@@ -232,7 +232,7 @@ jobs:
             gh release edit "${FINAL_TAG}" --notes-file "${NOTES_FILE}"
           else
             gh release create "${FINAL_TAG}" \
-              --title "${FINAL_TAG}" \
+              --title "Version ${VERSION}" \
               --notes-file "${NOTES_FILE}" \
               --target "${GITHUB_SHA}"
           fi

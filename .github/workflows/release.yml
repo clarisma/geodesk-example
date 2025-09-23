@@ -59,12 +59,8 @@ jobs:
       - name: Build (CMake)
         shell: bash
         run: |
-          if [[ "${{ matrix.platform }}" == "windows" || "${{ matrix.os }}" == "windows-latest" ]]; then
-            cmake --build build --config Release --parallel
-          else
-            cmake --build build --parallel
-          fi
-
+          cmake --build build --config Release --parallel -j2
+          
       - name: Locate built executable
         id: findexe
         shell: bash

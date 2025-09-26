@@ -109,6 +109,33 @@ jobs:
 
           echo "bin=$BIN" >> "$GITHUB_OUTPUT"
 
+      - name: Install Inno Setup (Windows)
+        if: matrix.platform == 'win'
+        run: choco install innosetup -y
+
+      - name: Build Windows installer (Inno)
+        if: matrix.platform == 'win'
+        shell: pwsh
+        run: |
+          $Exe    = "${{ steps.findexe.outputs.bin }}"
+          $Readme = "$(Resolve-Path docs/readme.txt)"
+          $Lic    = "$(Resolve-Path docs/LICENSE.txt)"
+          $Ver    = "${{ steps.ver.outputs.version }}"
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" `
+            "/DMyAppVersion=$Ver" `
+            "/DAppExePath=$Exe" `
+            "/DReadmePath=$Readme" `
+            "/DLicensePath=$Lic" `
+            "packaging/windows/inno.iss"
+
+      - name: Upload Windows installer
+        if: matrix.platform == 'win'
+        uses: actions/upload-artifact@v4
+        with:
+          name: example-${{ steps.ver.outputs.version }}-setup.exe
+          path: dist/example-${{ steps.ver.outputs.version }}-setup.exe
+          if-no-files-found: error
+
       - name: Verify macOS binary is universal (fat)
         if: matrix.platform == 'macos'
         shell: bash

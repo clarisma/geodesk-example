@@ -128,7 +128,7 @@ jobs:
         if: matrix.platform == 'win'
         uses: actions/upload-artifact@v4
         with:
-          name: example-${{ steps.ver.outputs.version }}-setup.exe
+          name: packaging/windows/Output/gol-{{ steps.ver.outputs.version }}-win-setup.exe
           path: dist/example-${{ steps.ver.outputs.version }}-setup.exe
           if-no-files-found: error
 

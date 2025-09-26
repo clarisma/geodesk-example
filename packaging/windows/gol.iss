@@ -48,7 +48,7 @@ DialogFontName=Segoe UI
 DialogFontSize=12
 
 [Files]
-Source: "{#AppExePath}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\{#AppExePath}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\..\doc\LICENSE.txt"; DestDir: "{app}";  Flags: ignoreversion 
 Source: "..\..\doc\README.txt"; DestDir: "{app}";  Flags: ignoreversion isreadme
 

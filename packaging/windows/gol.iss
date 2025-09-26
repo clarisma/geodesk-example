@@ -2,7 +2,9 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Geo-Object Librarian"
-#define MyAppVersion "2.0.0"
+#ifndef MyAppVersion
+  #define MyAppVersion "2.0.0"
+#endif  
 #define MyAppPublisher "GeoDesk"
 #define MyAppURL "https://docs.geodesk.com/gol"
 #define MyAppExeName "gol.exe"
@@ -27,6 +29,7 @@ PrivilegesRequiredOverridesAllowed=dialog
 OutputBaseFilename=setup
 SolidCompression=yes
 WizardStyle=classic
+LicenseFile=..\..\doc\LICENSE.txt
 
 [Tasks]
 ; Show a checkbox on the "Select Additional Tasks" page
@@ -43,4 +46,9 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 ; Increase wizard text size
 DialogFontName=Segoe UI
 DialogFontSize=12
+
+[Files]
+Source: "{#AppExePath}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\doc\LICENSE.txt"; DestDir: "{app}";  Flags: ignoreversion 
+Source: "..\..\doc\README.txt"; DestDir: "{app}";  Flags: ignoreversion isreadme
 

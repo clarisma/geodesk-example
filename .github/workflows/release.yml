@@ -118,14 +118,10 @@ jobs:
         shell: pwsh
         run: |
           $Exe    = "${{ steps.findexe.outputs.bin }}"
-          $Readme = "$(Resolve-Path docs/readme.txt)"
-          $Lic    = "$(Resolve-Path docs/LICENSE.txt)"
           $Ver    = "${{ steps.ver.outputs.version }}"
           & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" `
             "/DMyAppVersion=$Ver" `
             "/DAppExePath=$Exe" `
-            "/DReadmePath=$Readme" `
-            "/DLicensePath=$Lic" `
             "packaging/windows/inno.iss"
 
       - name: Upload Windows installer

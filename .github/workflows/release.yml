@@ -122,7 +122,7 @@ jobs:
           & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" `
             "/DMyAppVersion=$Ver" `
             "/DAppExePath=$Exe" `
-            "packaging/windows/inno.iss"
+            "packaging/windows/gol.iss"
 
       - name: Upload Windows installer
         if: matrix.platform == 'win'
